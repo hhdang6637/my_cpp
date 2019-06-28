@@ -6,20 +6,26 @@
 class base
 {
 private:
+    static unsigned long count;
+
+protected:
     bool __trace;
     std::ostream &__os;
-    /* data */
+
 public:
     base(bool trace = false, std::ostream &os = std::cout);
     virtual ~base();
+
+    void set_trace(bool trace) { __trace = trace; }
+
+    static unsigned long get_number_inst_of_base() { return base::count; };
 };
 
 class A : public base
 {
 private:
-    /* data */
 public:
-    A(/* args */);
+    A(bool trace = false, std::ostream &os = std::cout);
     ~A() override;
 };
 
