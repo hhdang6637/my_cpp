@@ -9,6 +9,7 @@ INCLUDE_DIRECTORIES(
 SET(
     SOURCES
 
+    ../../lib/base.cpp
     ../../lib/func_trace.cpp
     basic_unique_ptr.cpp
 )

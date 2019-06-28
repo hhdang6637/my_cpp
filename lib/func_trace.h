@@ -9,6 +9,9 @@ class func_trace final
 private:
     std::string __function_name;
     std::ostream &__os;
+    /*
+    std::chrono::system_clock::time_point __enter_time;
+     */
 
 public:
     explicit func_trace(const char *, std::ostream &os = std::clog);

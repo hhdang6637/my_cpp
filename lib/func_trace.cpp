@@ -8,5 +8,4 @@ func_trace::func_trace(const char *fname, std::ostream &os) : __function_name(fn
 func_trace::~func_trace()
 {
     __os << "func_trace: leave " << __function_name << std::endl;
-    __os.flush();
 }

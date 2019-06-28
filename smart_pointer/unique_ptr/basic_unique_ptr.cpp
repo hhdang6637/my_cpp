@@ -1,53 +1,8 @@
 
 #include <iostream>
 #include <memory>
+#include "base.h"
 #include "func_trace.h"
-
-class base
-{
-private:
-    bool __trace;
-    std::ostream &__os;
-    /* data */
-public:
-    base(bool trace = false, std::ostream &os = std::cout);
-    virtual ~base();
-};
-
-base::base(bool trace, std::ostream &os) : __trace(trace), __os(os)
-{
-    if (__trace)
-    {
-        __os << "called contructer base() " << this << std::endl;
-    }
-}
-
-base::~base()
-{
-    if (__trace)
-    {
-        __os << "called destructor ~base()" << this << std::endl;
-    }
-}
-
-class A : public base
-{
-private:
-    /* data */
-public:
-    A(/* args */);
-    ~A() override;
-};
-
-A::A(/* args */) : base(true)
-{
-    std::cout << "called contructer A() " << this << std::endl;
-}
-
-A::~A()
-{
-    std::cout << "called destructor ~A()" << this << std::endl;
-}
 
 void raw_ptr()
 {
@@ -99,10 +54,25 @@ void uniqueu_ptr_relese()
     }
 }
 
+void uniqueu_ptr_tranfer_ownership()
+{
+    FUNC_TRACE();
+    A *sp = new A();
+    std::unique_ptr<A> up1(sp);
+    // std::unique_ptr<A> up2(sp); -> crash, cause duplicate free sp's memory
+
+    // std::unique_ptr<A> up2(up1);  // unique_ptr delete copy contructor
+
+    // but unique_ptr have move contructor
+    std::unique_ptr<A> up2(std::move(up1));
+}
+
 int main(int argc __attribute__((unused)), char const *argv[] __attribute__((unused)))
 {
-    raw_ptr();
-    uniqueu_ptr();
-    uniqueu_ptr_relese();
+    // raw_ptr();
+    // uniqueu_ptr();
+    // uniqueu_ptr_relese();
+    uniqueu_ptr_tranfer_ownership();
+
     return 0;
 }
