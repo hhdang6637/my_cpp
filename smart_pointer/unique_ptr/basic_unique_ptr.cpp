@@ -1,43 +1,32 @@
 
 #include <iostream>
-
-class trace_log
-{
-private:
-    std::string __fName;
-public:
-    trace_log(const char *f_name);
-    ~trace_log();
-};
-
-trace_log::trace_log(const char *f_name) : __fName(f_name)
-{
-    std::cout << "----------- enter " << __fName << " -----------" << std::endl;
-}
-
-trace_log::~trace_log()
-{
-    std::cout << "----------- leave " << __fName << " -----------" << std::endl;
-}
-
+#include "func_trace.h"
 
 class base
 {
 private:
+    bool __trace;
+    std::ostream &__os;
     /* data */
 public:
-    base(/* args */);
+    base(bool trace = false, std::ostream &os = std::cout);
     virtual ~base();
 };
 
-base::base(/* args */)
+base::base(bool trace, std::ostream &os) : __trace(trace), __os(os)
 {
-    std::cout << "called contructer base() " << this << std::endl;
+    if (__trace)
+    {
+        __os << "called contructer base() " << this << std::endl;
+    }
 }
 
 base::~base()
 {
-    std::cout << "called destructor ~base()" << this << std::endl;
+    if (__trace)
+    {
+        __os << "called destructor ~base()" << this << std::endl;
+    }
 }
 
 class A : public base
@@ -49,7 +38,7 @@ public:
     ~A() override;
 };
 
-A::A(/* args */)
+A::A(/* args */) : base(true)
 {
     std::cout << "called contructer A() " << this << std::endl;
 }
@@ -61,18 +50,23 @@ A::~A()
 
 void without_uniqueu_ptr()
 {
-    trace_log t(__FUNCTION__);
+    FUNC_TRACE();
     base *a_ptr = new (std::nothrow) A();
     if (a_ptr != nullptr)
     {
+        std::cout << "got A with addr " << a_ptr << std::endl;
         delete a_ptr;
     }
 }
 
 void with_uniqueu_ptr()
 {
-    trace_log t(__FUNCTION__);
+    FUNC_TRACE();
     std::unique_ptr<base> a_ptr(new (std::nothrow) A());
+    if (a_ptr.get())
+    {
+        std::cout << "got A with addr " << a_ptr.get() << std::endl;
+    }
 }
 
 int main(int argc __attribute__((unused)), char const *argv[] __attribute__((unused)))
