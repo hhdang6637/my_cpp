@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <memory>
 #include "func_trace.h"
 
 class base
