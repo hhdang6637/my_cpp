@@ -48,7 +48,7 @@ A::~A()
     std::cout << "called destructor ~A()" << this << std::endl;
 }
 
-void without_uniqueu_ptr()
+void raw_ptr()
 {
     FUNC_TRACE();
     base *a_ptr = new (std::nothrow) A();
@@ -59,7 +59,7 @@ void without_uniqueu_ptr()
     }
 }
 
-void with_uniqueu_ptr()
+void uniqueu_ptr()
 {
     FUNC_TRACE();
     std::unique_ptr<base> a_ptr(new (std::nothrow) A());
@@ -69,9 +69,39 @@ void with_uniqueu_ptr()
     }
 }
 
+void uniqueu_ptr_relese()
+{
+    FUNC_TRACE();
+    std::unique_ptr<base> a_ptr(new (std::nothrow) A());
+    if (a_ptr.get())
+    {
+        std::cout << "got A with addr " << a_ptr.get() << std::endl;
+        std::cout << "release it " << std::endl;
+        a_ptr = nullptr;
+    }
+
+    std::unique_ptr<base> a_ptr1(new (std::nothrow) A());
+    if (a_ptr1.get())
+    {
+        std::cout << "got a_ptr1 with addr " << a_ptr1.get() << std::endl;
+        std::cout << "manual release it " << std::endl;
+        base *b = a_ptr1.release();
+        delete b;
+    }
+
+    std::unique_ptr<base> a_ptr_reset(new (std::nothrow) A());
+    if (a_ptr_reset.get())
+    {
+        std::cout << "got a_ptr_reset with addr " << a_ptr_reset.get() << std::endl;
+        std::cout << "reset it " << std::endl;
+        a_ptr_reset.reset();
+    }
+}
+
 int main(int argc __attribute__((unused)), char const *argv[] __attribute__((unused)))
 {
-    without_uniqueu_ptr();
-    with_uniqueu_ptr();
+    raw_ptr();
+    uniqueu_ptr();
+    uniqueu_ptr_relese();
     return 0;
 }
