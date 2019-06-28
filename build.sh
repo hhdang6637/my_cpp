@@ -8,8 +8,4 @@ cd build
 cmake ..
 make VERBOSE=1 -j$CPU_NUM
 
-if [ ! -d bin ]; then
-    mkdir bin
-fi
-
-DESTDIR=bin make -j$CPU_NUM install
+DESTDIR=. make -j$CPU_NUM install

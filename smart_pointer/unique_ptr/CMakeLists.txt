@@ -14,3 +14,7 @@ SET(
 )
 
 add_executable(basic_unique_ptr ${SOURCES})
+
+INSTALL(TARGETS basic_unique_ptr
+    RUNTIME DESTINATION bin
+)
