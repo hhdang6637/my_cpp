@@ -10,10 +10,10 @@ private:
 
 protected:
     bool __trace;
-    std::ostream &__os;
+    static std::ostream &__OS;
 
 public:
-    base(bool trace = false, std::ostream &os = std::cout);
+    base(bool trace = true);
     virtual ~base();
 
     void set_trace(bool trace) { __trace = trace; }
@@ -25,7 +25,7 @@ class A : public base
 {
 private:
 public:
-    A(bool trace = false, std::ostream &os = std::cout);
+    A(bool trace = true);
     ~A() override;
 };
 
