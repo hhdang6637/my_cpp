@@ -31,7 +31,7 @@ int FindBatteryCapacity(const std::vector<int> &h)
     return capacity;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc __attribute((unused)), char const *argv[] __attribute((unused)))
 {
     return 0;
 }

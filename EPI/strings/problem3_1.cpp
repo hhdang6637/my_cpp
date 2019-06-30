@@ -77,7 +77,7 @@ void int2string_test()
     std::cout << "int2string(0)   ->  " << int2string(0) << std::endl;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc __attribute((unused)), char const *argv[] __attribute((unused)))
 {
     string2int_test();
     int2string_test();

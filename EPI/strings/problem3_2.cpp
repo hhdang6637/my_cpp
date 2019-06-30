@@ -27,7 +27,7 @@ std::string string_reverse(const std::string &in)
     return s;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc __attribute((unused)), char const *argv[] __attribute((unused)))
 {
     std::string s = "Given a string containing a set of words separated";
     std::cout << s << " -> " << string_reverse(s) << std::endl;

@@ -126,7 +126,7 @@ bool list<T>::del(const T &t) noexcept
     return false;
 }
 
-int main(int argc __attribute__((unused)), char const *argv[] __attribute__((unused)))
+int main(int argc __attribute((unused)), char const *argv[] __attribute((unused)))
 {
     list<base_v<int>> l;
     l.add(base_v<int>(1));

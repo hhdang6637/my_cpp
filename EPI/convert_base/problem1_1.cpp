@@ -21,7 +21,7 @@ void convert_base_test();
 std::string ConvertBase(const std::string &s, int b1, int b2);
 void ConvertBaseTest();
 
-int main(int argc, char const *argv[])
+int main(int argc __attribute((unused)), char const *argv[] __attribute((unused)))
 {
     // std::string s = "0123456";
     // convert_base(10, s, 10);
@@ -38,7 +38,7 @@ int power_base(int base, int size)
 {
     int s = 1;
 
-    for (size_t i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         s *= base;
     }
@@ -250,7 +250,7 @@ std::string ConvertBase(const std::string &s, int b1, int b2)
     bool is_negative = s.front() == '-' ? true : false;
 
     long int x = 0;
-    for (int i = is_negative ? 1 : 0; i < s.size(); ++i)
+    for (size_t i = is_negative ? 1 : 0; i < s.size(); ++i)
     {
         x *= b1;
         x += isdigit(s[i]) ? s[i] - '0' : s[i] - 'A' + 10;

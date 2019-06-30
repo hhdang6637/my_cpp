@@ -189,7 +189,7 @@ void simple_bin_tree<K, V>::printBinaryTreeDepthOrder()
     }
 }
 
-int main(int argc __attribute__((unused)), char const *argv[] __attribute__((unused)))
+int main(int argc __attribute((unused)), char const *argv[] __attribute((unused)))
 {
     // simple_bin_tree<int, int>::DEBUG = false;
     simple_bin_tree<int, int> my_tree;
