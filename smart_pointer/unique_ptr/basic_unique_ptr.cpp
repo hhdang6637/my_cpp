@@ -72,7 +72,7 @@ void uniqueu_ptr_source_sink()
     FUNC_TRACE();
     std::cout << "test uniqueu_ptr source " << std::endl;
     auto sink = [](std::unique_ptr<base> up) {
-        // do nothing
+        (void)up;
     };
 
     std::unique_ptr<base> a_ptr(new (std::nothrow) A(true));
