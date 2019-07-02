@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <array>
 
 void print_list(const std::vector<int> &list)
 {
