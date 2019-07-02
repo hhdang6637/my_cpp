@@ -17,6 +17,9 @@ void test_1()
 
     bit_tmp = bits_1;
     std::cout << bit_tmp.operator^=(bits_2) << " xor" << std::endl;
+
+    bit_tmp = bits_1;
+    std::cout << bit_tmp.operator~() << " not" << std::endl;
 }
 
 int main(int argc __attribute__((unused)), char const *argv[] __attribute__((unused)))
