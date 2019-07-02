@@ -52,7 +52,7 @@ void test_pipe()
         {
             continue;
         }
-
+#if 0
         if (c != '\n')
         {
             std::cout << c;
@@ -64,6 +64,10 @@ void test_pipe()
             std::cout << "\r";
             std::cout.flush();
         }
+#else
+        std::cout << c;
+        // std::cout.flush();
+#endif
     }
 
     close(fds[0]);
