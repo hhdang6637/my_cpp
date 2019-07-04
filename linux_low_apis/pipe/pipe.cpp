@@ -3,7 +3,9 @@
 #include <thread>
 #include <mutex>
 #include <signal.h>
+#include <sstream>
 #include <vector>
+#include <array>
 
 static volatile bool stop = false;
 static volatile int child_thread_count = 0;
@@ -14,7 +16,9 @@ int fds[2];
 void test_pipe()
 {
     auto thread_f = []() {
-        std::string line = std::to_string(pthread_self()) + " I'm still alive\n";
+        std::stringstream ss;
+        ss << std::this_thread::get_id() << " I'm still alive\n";
+        std::string line = ss.str();
 
         while (!stop)
         {
@@ -22,7 +26,9 @@ void test_pipe()
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
 
-        line = std::to_string(pthread_self()) + " CHILD DONE\n";
+        ss.clear();
+        ss << std::this_thread::get_id() << " CHILD DONE\n";
+        line = ss.str();
         ::write(fds[1], line.data(), line.size());
 
         child_thread_count_mutex.lock();
