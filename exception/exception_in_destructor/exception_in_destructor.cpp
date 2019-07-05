@@ -9,9 +9,9 @@ class A1
 {
 public:
     A1(){
-        FUNC_TRACE()
-    };
-    virtual ~A1() noexcept(false) {
+        FUNC_TRACE()};
+    virtual ~A1() noexcept(false)
+    {
         FUNC_TRACE()
         throw std::runtime_error("exception of A1 detructor");
     };
@@ -21,9 +21,9 @@ class A2
 {
 public:
     A2(){
-        FUNC_TRACE()
-    };
-    virtual ~A2() noexcept(false) {
+        FUNC_TRACE()};
+    virtual ~A2() noexcept(false)
+    {
         FUNC_TRACE()
         A1 a1;
         throw std::runtime_error("exception of A2 detructor");
