@@ -6,9 +6,8 @@
 #include <string>
 
 std::vector<std::string> GetAllNetworkInf(void);
-
 std::pair<std::pair<struct sockaddr, struct sockaddr>, bool> GetV4SubnetAddrIntf(const std::string &);
-
 std::string V4sockaddr2Str(struct sockaddr &);
+int V4SubnetMaskToCIDR(struct sockaddr &);
 
 #endif // _NETWORK_

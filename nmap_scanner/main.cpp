@@ -3,20 +3,14 @@
 #include <iostream>
 
 #include "network.h"
+#include "nmap_scanner.h"
 
 int main(int argc, char const *argv[])
 {
-    std::vector<std::string> intfs = GetAllNetworkInf();
-
-    for (const auto &intf : intfs)
+    auto nmapResult = NmapScan("192.168.50.0/24");
+    if (nmapResult.second == true)
     {
-        // std::cout << intf << std::endl;
-        auto subnetInfo = GetV4SubnetAddrIntf(intf);
-        if (subnetInfo.second == true)
-        {
-            std::cout << intf << std::endl;
-            std::cout << V4sockaddr2Str(subnetInfo.first.first) << "/" << V4sockaddr2Str(subnetInfo.first.second) << std::endl;
-        }
+        std::cout << nmapResult.first;
     }
 
     return 0;

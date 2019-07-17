@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 2.6)
 project (nmap_scanner)
 
 INCLUDE_DIRECTORIES(
-#    ../../lib
+#    ../
 )
 
 
@@ -13,18 +13,19 @@ SET(
 #    ../../lib/func_trace.cpp
     main.cpp
     network.cpp
+    nmap_scanner.cpp
 )
 
-ADD_EXECUTABLE(nmap_scaner ${SOURCES})
+ADD_EXECUTABLE(nmap_scanner ${SOURCES})
 
 
 TARGET_LINK_LIBRARIES(
-    nmap_scaner
+    nmap_scanner
 
-    -lpthread
+    #-lpthread
 )
 
 
-INSTALL(TARGETS nmap_scaner
+INSTALL(TARGETS nmap_scanner
     RUNTIME DESTINATION bin
 )
